@@ -3,19 +3,17 @@ title: Use advanced code search options
 titleSuffix: Azure Repos
 description: Advanced options for using Code Search across all your projects in Azure DevOps
 ms.assetid: 936AA33C-4AEF-461E-B49B-C98A59098282
-ms.prod: devops
 ms.technology: devops-collab
 ms.topic: conceptual
-ms.manager: mijacobs
-ms.author: kaelli
-author: KathrynEE
+ms.author: chcomley
+author: chcomley
 monikerRange: '>= tfs-2017'
 ms.date: 10/10/2019
 ---
 
-# How To: Use Code Search
+# Advanced code search  
 
-[!INCLUDE [version-header](../../_shared/version-tfs-2017-through-vsts.md)]
+[!INCLUDE [version-header](../../includes/version-tfs-2017-through-vsts.md)]
 
 By using Code Search you can do the following tasks:
 
@@ -60,23 +58,21 @@ You must escape the special characters `(`,  `)`, `[`, `]`, `:`, `*`, and `?`
 by enclosing them in a phrase delimited with double-quotes `"` and `"`.
 
 When you search from inside a project, the default is to search only within that 
-project. You can navigate up to higher levels to broaden your search.
+project. You can go up to higher levels to broaden your search.
 
 In a Git project, you see a list of the repositories it contains. 
 Use the project and repository checkboxes to widen your search to more or all projects, or to 
-narrow your search to fewer projects and repositories. If there is more than a few 
+narrow your search to fewer projects and repositories. If there are more than a few 
 projects or repositories, use the **Show more** link to see them all.
 
 Code Search can index multiple branches in a Git repository - by default it indexes 
-files in only the default branch of your Git repositories (usually this is the **master** branch).
+files in only the default branch of your Git repositories (usually this is the **main** branch).
 Specify the branches for each repository that you want Code
 Search to index in the **Options** tab of the **Repositories** section in the
 [project settings page](../navigation/go-to-service-page.md#open-project-settings).
 
-::: moniker range="azure-devops-2019"
-
-![Configure Git branches to include in search](_img/advanced-work-item-search-syntax/configure-branches.png)
-
+::: moniker range=">= azure-devops-2019"
+![Configure Git branches to include in search](media/advanced-work-item-search-syntax/configure-branches.png)
 ::: moniker-end
 
 In a TFVC project, you see a list of folder paths in that project for 
@@ -133,7 +129,7 @@ You can use more than one `?` wildcard to match more than one character.
 
 ------------------
 
-![Warning](_img/_shared/Warning-hightop.png) **No results found for ...**  
+![Warning](media/shared/Warning-hightop.png) **No results found for ...**  
 If there is a very large number of hits when using a wildcard search, such 
 as when using a very simple wildcard search string, you may see a message that no 
 matching files were found. In this case, narrow your search to reduce the number
@@ -156,7 +152,7 @@ Within a phrase:
 ### Search for special characters
 
 > [!NOTE]
-> This feature is currently available only for Azure DevOps Services customers and not TFS.
+> This feature is currently available only for Azure DevOps Services.
 
 You can include special characters in a search string, or search specifically for special characters,
 according to the following rules:
@@ -303,10 +299,8 @@ Some more examples of search strings are:
 
 * You can use the code type search functions with files written in C#, C, C++, Java, and Visual Basic.NET.
 
-Open the search results in a new browser tab from either search box by
-pressing _Ctrl_ + _Enter_ or by holding _Ctrl_ and clicking  the
-![start search icon](_img/_shared/start-search-icon.png) icon.
-In Google Chrome, press _Ctrl_ + _Shift_ + _Enter_ to switch the focus
+Open the search results in a new browser tab from either search box and
+press _Ctrl_ + _Enter_. In Google Chrome, select _Ctrl_ + _Shift_ + _Enter_ to switch the focus
 to the new browser tab. 
 
-[!INCLUDE [shared-got-feedback](_shared/shared-got-feedback.md)]
+

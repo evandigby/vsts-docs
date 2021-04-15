@@ -6,7 +6,6 @@ summary: Discover, manage, develop extensions and widgets for integration with A
 metadata:
   title: Marketplace & extensibility documentation
   description: Discover, manage, and develop extensions and widgets for integration with Azure DevOps. 
-  ms.service: visual-studio-online
   ms.prod: devops 
   ms.technology: devops-marketplace
   ms.topic: landing-page 
@@ -35,13 +34,13 @@ landingContent:
           - text: Install extensions
             url: ../marketplace/install-extension.md
           - text: Assign paid extensions
-            url: ../marketplace/assign-paid-extensions.md
+            url: ../marketplace/install-extension.md
   - title: Develop extensions
     linkLists:
       - linkListType: video
         links:
           - text: Develop an Azure DevOps Services extension with continuous delivery pipeline
-            url: .https://www.youtube.com/watch?v=uzQFvYY0xiM&list=PLe14MLC-Nwy6saThL6NSv2rTtFNpkvfp3
+            url: https://www.youtube.com/watch?v=uzQFvYY0xiM&list=PLe14MLC-Nwy6saThL6NSv2rTtFNpkvfp3
       - linkListType: quickstart
         links:
           - text: Develop a web extension
@@ -49,7 +48,7 @@ landingContent:
           - text: Extension samples
             url: ../extend/develop/samples-overview.md
           - text: Extensibility points
-            url: ../extend/reference/targets/overview.md
+            url: /previous-versions/azure/devops/extend/reference/targets/overview
       - linkListType: tutorial
         links:
           - text: Create a custom pipelines task
@@ -65,7 +64,7 @@ landingContent:
           - text: Authorize access to REST APIs with OAuth 2.0
             url: ../integrate/get-started/authentication/oauth.md
           - text: Authenticate access with personal access tokens
-            url: ../integrate/get-started/authentication/pats.md
+            url: ../organizations/accounts/use-personal-access-tokens-to-authenticate.md
       - linkListType: reference
         links:
           - text: .NET client libraries
@@ -92,7 +91,3 @@ landingContent:
             url: ../service-hooks/services/teams.md?toc=/azure/devops/marketplace-extensibility/toc.json&bc=/azure/devops/marketplace-extensibility/breadcrumb/toc.json
           - text: Create a service hook with WebHooks
             url: ../service-hooks/services/webhooks.md?toc=/azure/devops/marketplace-extensibility/toc.json&bc=/azure/devops/marketplace-extensibility/breadcrumb/toc.json
-
-
-
-

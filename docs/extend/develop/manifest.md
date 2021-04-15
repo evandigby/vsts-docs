@@ -1,24 +1,26 @@
 ---
-ms.prod: devops
 ms.technology: devops-ecosystem
 title: Extension Manifest Reference| Extensions for Azure DevOps
 description: How to create a manifest for your extension to Azure DevOps
 ms.assetid: e3150221-3cdf-47e1-b7e9-24211498cc29
 ms.topic: conceptual
-ms.manager: mijacobs
 monikerRange: '>= tfs-2017'
 ms.author: chcomley
 author: chcomley
-ms.date: 10/09/2019
+ms.date: 08/11/2020
 ---
 
 # Extension manifest reference
 
+[!INCLUDE [version-tfs-2017-through-vsts](../../includes/version-tfs-2017-through-vsts.md)]
+
 Every extension has a JSON manifest file which defines basic info about the extension and how it can extend and enhance the experience. This article shows you how to create a manifest for your extensions to Azure DevOps.
+
+[!INCLUDE [extension-docs-new-sdk](../../includes/extension-docs-new-sdk.md)]
 
 Start by creating a file named `vss-extension.json` at the root of your extension folder. This file contains required attributes, like the extension's ID and its installation targets (where it can run). It also defines the contributions being made by your extension.
 
-Here is an example of what a typical manifest will look like:
+See the following example of a typical manifest:
 
 [!code-json[](../_data/extension-typical.json)]
 
@@ -26,7 +28,7 @@ Here is an example of what a typical manifest will look like:
 
 <a id="core-properties" />
 
-[!INCLUDE [](../_shared/manifest-core.md)]
+[!INCLUDE [](../includes/manifest-core.md)]
 
 ### Examples of required attributes
 
@@ -35,7 +37,7 @@ Here is an example of what a typical manifest will look like:
 ## Optional attributes
 
 ### Runtime attributes
-[!INCLUDE [](../_shared/manifest-extension-runtime.md)]
+[!INCLUDE [](../includes/manifest-extension-runtime.md)]
 
 [!code-json[](../_data/extension-runtime.json)]
 
@@ -43,7 +45,7 @@ Here is an example of what a typical manifest will look like:
 
 ### Discovery attributes
 
-[!INCLUDE [](../_shared/manifest-discovery.md)]
+[!INCLUDE [](../includes/manifest-discovery.md)]
 
 <a id="public-flag" />
 
@@ -59,7 +61,7 @@ By default, all extensions in the [Azure DevOps Marketplace](https://marketplace
 }            
 ```
 
-Or simply:
+Or:
 
 ```json
 {
@@ -145,7 +147,7 @@ If your paid BYOL extension offers a trial period (we recommend so), then you ca
 ```
 
 > [!NOTE]
-> If you do want to target Team Foundation Server but do not wish to surface a Download option for your extension then add the `__DoNotDownload` tag (starts with two underscores) to the extension manifest.
+> If you do want to target TFS, but don't wish to surface a Download option for your extension, then add the `__DoNotDownload` tag (starts with two underscores) to the extension manifest.
 > If you are moving an extension from the previosuly-offerred billing & licensing from Microsoft to the BYOL model, then contact us and we'll provide you with suitable steps.
 
 ### Example of additional properties
@@ -162,11 +164,11 @@ If your paid BYOL extension offers a trial period (we recommend so), then you ca
 * 6 - links
 * 7 - branding
 
-![card](./_img/extension-details-page.png)
+![card](./media/extension-details-page.png)
 
 <a name="CustomerQnASupport"></a>
 
-### Marketplace Q&A - CustomerQnASupport property
+### Marketplace Q & A - CustomerQnASupport property
 
 All extensions on the Visual Studio Marketplace have a Q&A section to allow one-on-one public conversations between extension users and publishers. Publishers can choose between Marketplace Q&A, GitHub issues, or custom Q&A URL for the Q&A section or disable Q&A in Marketplace using the CustomerQnASupport property in the manifest. 
 
@@ -180,7 +182,7 @@ For a different experience than one of the default options use the **CustomerQnA
 ```json
 {
     "CustomerQnASupport": {
-        "enableqna": true,
+        "enablemarketplaceqna": true,
         "url": "http://uservoice.visualstudio.com"
     } 
 }
@@ -188,39 +190,39 @@ For a different experience than one of the default options use the **CustomerQnA
 
 ### Properties
 
-Properties for the CustomerQnASupport section:
+Properties for the Customer Q & A Support section:
 
-- **enableqna** - boolean field, set to true for marketplace or custom Q&A; false for disabling Q&A
+- **enablemarketplaceqna** - boolean field, set to true for marketplace or custom Q&A; false for disabling Q&A
 - **url** - string, URL for custom Q&A
 
 
-### Examples showing usage of Q&A support
+### Examples showing usage of Q & A support
 
-#### Example 10: Extension using custom Q&A
+#### Example 10: Extension using custom Q & A
 
 ```json
 {
      "CustomerQnASupport": {
-        "enableqna":"true",
+        "enablemarketplaceqna":"true",
         "url": "http://uservoice.visualstudio.com"
     } 
 }
 ```
-#### Example 11: Extension with GitHub repository but using Marketplace Q&A instead of GitHub issues
+#### Example 11: Extension with GitHub repository but using Marketplace Q & A instead of GitHub issues
 
 ```json
 {
      "CustomerQnASupport": {
-        "enableqna":"true"
+        "enablemarketplaceqna":"true"
     } 
 }
 ```
-#### Example 12: Extension disabling Q&A section
+#### Example 12: Extension disabling Q & A section
 
 ```json
 {
      "CustomerQnASupport": {
-        "enableqna":"false"
+        "enablemarketplaceqna":"false"
     } 
 }
 ```
@@ -233,44 +235,43 @@ If no scopes are specified, extensions are only provided access to user profile 
 
 ### Supported scopes
 
-[!INCLUDE [](../../integrate/_shared/scopes.md)] 
+[!INCLUDE [](../../integrate/includes/scopes.md)] 
 
-### Changing a published extension's scopes
+### Changing scope of published extension
 
 The scopes of an extension can be changed after publishing. Customers that previously installed your extension (and authorized the previous set of scopes) remain on the previous version of the extension and need to authorize the new scopes before being upgraded to the newest version.
 
 The **Action Required** section of the Extension settings hub shows a user which, if any, installed extensions require authorization:
 
-![scope-change](./_img/auth-new-scopes.png)
+![scope-change](./media/auth-new-scopes.png)
 
 An administrator can then review and authorize the new set of scopes:
 
-![scope-change-dialog](./_img/auth-new-scopes-dialog.png)
+![scope-change-dialog](./media/auth-new-scopes-dialog.png)
 
 ## Installation targets
 
-As the name implies, installation targets define the products and services your extension can be installed into. `Microsoft.VisualStudio.Services` is the most common installation target and indicates that the extension can be installed into Azure DevOps Services and Team Foundation Server 2015 Update 2 and later (the version when extension were introduced in Team Foundation Server).
+As the name implies, installation targets define the products and services your extension can be installed into. `Microsoft.VisualStudio.Services` is the most common installation target and indicates that the extension can be installed into Azure DevOps and TFS 2015 Update 2 and later (the version when extension were introduced in TFS).
 
 The installation targets for an extension or integration are specified via the `targets` field in the manifest. 
 
 Supported identifiers for **extensions**:
 
 * `Microsoft.VisualStudio.Services.Cloud`: installs into Azure DevOps Services
-* `Microsoft.TeamFoundation.Server`: installs into Team Foundation Server
+* `Microsoft.TeamFoundation.Server`: installs into TFS
 * `Microsoft.VisualStudio.Services`: installs into both. Shortcut for `Microsoft.VisualStudio.Services.Cloud` and `Microsoft.TeamFoundation.Server` version `[14.2,)`
 
-Supported identifiers for **integrations** (tools or services that integrate with Azure DevOps Services or Team Foundation Server):
+Supported identifiers for **integrations** (tools or services that integrate with Azure DevOps or TFS):
 
 * `Microsoft.VisualStudio.Services.Cloud.Integration`: integrates with Azure DevOps Services
-* `Microsoft.TeamFoundation.Server.Integration`: integrates with Team Foundation Server
+* `Microsoft.TeamFoundation.Server.Integration`: integrates with TFS
 * `Microsoft.VisualStudio.Services.Integration`: integrates with both. Shortcut for `Microsoft.VisualStudio.Services.Cloud.Integration` and `Microsoft.TeamFoundation.Server.Integration`
 
-For more information, see [Azure DevOps Services extensibility points](../reference/targets/overview.md).
+For more information, see [Azure DevOps extensibility points](/previous-versions/azure/devops/extend/reference/targets/overview).
 
 ### Examples
 
-#### Example 1: Extension that works with Azure DevOps Services and Team Foundation Server
-
+#### Example 1: Extension that works with Azure DevOps
 ```json
 {
     "targets": [
@@ -293,9 +294,9 @@ For more information, see [Azure DevOps Services extensibility points](../refere
 }
 ```
 
-Installation targets can also be used in the manifest of integrations (i.e. products, apps, or tools that work with, but do not install into, Azure DevOps Services or Team Foundation Server. For example:
+Installation targets can also be used in the manifest of integrations (i.e. products, apps, or tools that work with, but do not install into, Azure DevOps. For example:
 
-#### Example 3: Integration that works with Azure DevOps Services and Team Foundation Server
+#### Example 3: Integration that works with Azure DevOps
 
 ```json
 {
@@ -307,7 +308,7 @@ Installation targets can also be used in the manifest of integrations (i.e. prod
 }
 ```
 
-#### Example 4: Integration that only works with Team Foundation Server
+#### Example 4: Integration that only works with TFS
 
 ```json
 {
@@ -344,7 +345,7 @@ Version numbers for Team Foundation Server:
 
 ### Examples showing versions
 
-#### Example 5: Extension that works with Azure DevOps Services and Team Foundation Server 2017 and later
+#### Example 5: Extension that works with Azure DevOps and TFS 2017 and later
 
 ```json
 {
@@ -360,7 +361,7 @@ Version numbers for Team Foundation Server:
 }
 ```
 
-#### Example 6: Integration that works with Team Foundation Server 2015 and later
+#### Example 6: Integration that works with TFS 2015 and later
 
 ```json
 {
@@ -373,7 +374,7 @@ Version numbers for Team Foundation Server:
 }
 ```
 
-#### Example 7: Integration that works with Team Foundation Server 2013 and 2015
+#### Example 7: Integration that works with TFS 2013 and 2015
 
 ```json
 {
@@ -388,7 +389,7 @@ Version numbers for Team Foundation Server:
 
 ### Shortcuts
 
-`Microsoft.VisualStudio.Services` is a shortcut for Azure DevOps Services and Team Foundation Server 2015 Update 2 and later. So this:
+`Microsoft.VisualStudio.Services` is a shortcut for Azure DevOps and TFS 2015 Update 2 and later. So this:
 
 ```json
 {
@@ -418,7 +419,7 @@ is equivalent to:
 
 ### Using installation targets and demands
 
-Installation targets and demands are used together to present users with an accurate view of the products/services your extension or integration is compatible with. For example, specifying an installation target of `Microsoft.VisualStudio.Services` with a demand of `api-version/3.0` means the extension works with Azure DevOps Services and Team Foundation Server 2017 RTM and later:
+Installation targets and demands are used together to present users with an accurate view of the products/services your extension or integration is compatible with. For example, specifying an installation target of `Microsoft.VisualStudio.Services` with a demand of `api-version/3.0` means the extension works with Azure DevOps and TFS 2017 RTM and later:
 
 #### Example 8: Extension that uses version 3.0 APIs
 
@@ -464,7 +465,7 @@ Resolves to the following installation targets:
 
 Demands let you specify capabilities and other features required by your extension. These demands can then be used to limit where your extension can be published or installed.
 
-In the future, demands will be used by the Visual Studio Marketplace to list the products and environments your extension is generally compatible with. This will help customers understand whether your extension will work with their version of Team Foundation Server (for example).
+In the future, demands get used by the Visual Studio Marketplace to list the products and environments your extension is generally compatible with. This helps customers understand whether your extension works with their version of TFS (for example).
 
 Demands are specified in the extension manifest. For example:
 
@@ -477,7 +478,7 @@ Demands are specified in the extension manifest. For example:
 }
 ```
 
-In this example, the extension demands version 3.0 of the APIs, which means it can only be installed to Azure DevOps Services or Team Foundation Server 2017 RTM and later. It also requires the `ms.vss-dashboards-web` extension (and its `widget-catalog` contribution) to be installed (and enabled) in the collection before your extension can be installed.    
+In this example, the extension demands version 3.0 of the APIs, which means it can only be installed to Azure DevOps or TFS 2017 RTM and later. It also requires the `ms.vss-dashboards-web` extension (and its `widget-catalog` contribution) to be installed (and enabled) in the collection before your extension can be installed.    
 
 ### Supported demands
 
@@ -523,7 +524,7 @@ Properties for the Files section:
 - **addressable** – (optional) Set to **true** if you want your file to be URL-addressable. Defaults to **false**.
 - **packagePath** – (optional) Path to the resource within the package. Defaults to the relative path on disk from your root directory.
 - **contentType** – (optional) MIME type of the file. Defaults to a best guess based on the file extension and OS settings.
-- **assetType** – (optional) Specify the value of the Type attribute of the <Asset> entry in the VSIX manifest. Can also be an array of strings, in which case multiple <Asset> entries will be added for this file. Defaults to the packagePath.
+- **assetType** – (optional) Specify the value of the Type attribute of the <Asset> entry in the VSIX manifest. Can also be an array of strings, in which case multiple <Asset> entries get added for this file. Defaults to the packagePath.
 - **lang** – (optional) Language of this asset. Localized files are served based on the Accept-Language header. Leave blank to signify this file is in the default (or fallback) language. Localized versions of the same file should have the same assetType.
 
 ## Contributions
@@ -569,8 +570,8 @@ a dot (.). For example: `ms.vss-web.hub` is the full identifier for the contribu
 by the "ms" (Microsoft) publisher.
 
 *Relative* contribution references may be used within an extension manifest for a contribution's reference to another contribution or contribution
-type within that same extension. In this case, the publisher and extension identifiers are NOT included, and the identifier is simply a dot (.) followed
-by the contribution identifier. For example, ".hub" may be used within the "vss-web" extension mentioned above as a shortcut for "ms.vss-web.hub".
+type within that same extension. In this case, the publisher and extension identifiers are NOT included, and the identifier is a dot (.) followed
+by the contribution identifier. For example, ".hub" may be used within the "vss-web" extension mentioned previously as a shortcut for "ms.vss-web.hub".
 
 <a name="contributionTargets"></a>
 
@@ -621,6 +622,7 @@ The Marketplace only supports badges from the following trusted services:
 If you want to show a badge from another service, please contact vsmarketplace@microsoft.com.
 
 <a name="example"></a>
+
 ## Example manifest
 
 This extension contributions an action to the completed builds context menu and a hub to the Build hub group:

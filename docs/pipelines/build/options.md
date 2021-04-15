@@ -3,13 +3,8 @@ title: Build options
 ms.custom: seodec18
 description: Learn about building your code or deploying your software using build options on Azure Pipelines and Team Foundation Server (TFS).
 ms.topic: reference
-ms.prod: devops
-ms.technology: devops-cicd
 ms.assetid: 7C469647-117D-4867-B094-8BC811C0003E
-ms.manager: mijacobs
-ms.author: sdanie
-author: steved0x
-ms.date: 04/29/2019
+ms.date: 09/24/2020
 monikerRange: '>= tfs-2015'
 ---
 
@@ -17,7 +12,7 @@ monikerRange: '>= tfs-2015'
 
 ::: moniker range="<= tfs-2018"
 
-[!INCLUDE [temp](../_shared/concept-rename-note.md)]
+[!INCLUDE [temp](../includes/concept-rename-note.md)]
 
 ::: moniker-end
 
@@ -72,5 +67,10 @@ Select the [pool](../agents/pools-queues.md) that's attached to the pool that co
 Specify the authorization scope for a build job. Select:
 
 * **Project Collection** if the build needs access to multiple projects.
-
 * **Current Project** if you want to restrict this build to have access only the resources in the current project.
+
+For more information, see [Understand job access tokens](../process/access-tokens.md).
+
+## Build (run) number
+
+This documentation has moved to [Build (run) number](../process/run-number.md).

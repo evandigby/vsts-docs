@@ -2,10 +2,7 @@
 title: Update Service Fabric Manifests task
 description: Update the Service Fabric App versions in Azure Pipelines and Team Foundation Server (TFS)
 ms.topic: reference
-ms.prod: devops
-ms.technology: devops-cicd
 ms.assetid: 3034CEF8-215C-408E-AD0F-C41D3D9C2F72
-ms.manager: mijacobs
 ms.custom: seodec18
 ms.author: ronai
 author: RoopeshNair
@@ -15,7 +12,7 @@ monikerRange: '>= tfs-2017'
 
 # Update Service Fabric Manifests task
 
-[!INCLUDE [temp](../../_shared/version-tfs-2017-rtm.md)]
+[!INCLUDE [temp](../../includes/version-tfs-2017-rtm.md)]
 
 ::: moniker range="= tfs-2017"
 
@@ -38,7 +35,7 @@ None
 
 ::: moniker range="> tfs-2018"
 ## YAML snippet
-[!INCLUDE [temp](../_shared/yaml/ServiceFabricUpdateManifestsV2.md)]
+[!INCLUDE [temp](../includes/yaml/ServiceFabricUpdateManifestsV2.md)]
 ::: moniker-end
 
 ## Arguments
@@ -66,7 +63,7 @@ None
 <td>Version Value</td>
 <td>
 <p>The value appended to the versions in the manifest files. Default is `.$(Build.BuildNumber)`.</p>
-<p>**Tip:** You can modify the [build number format](https://go.microsoft.com/fwlink/?LinkId=761520) directly or use a [logging command](https://go.microsoft.com/fwlink/?LinkId=821347) to dynamically set a variable in any format. For example, you can use `$(VersionSuffix)` defined in a PowerShell task:</p>
+<p>**Tip:** You can modify the [build number format](../../process/run-number.md) directly or use a [logging command](https://go.microsoft.com/fwlink/?LinkId=821347) to dynamically set a variable in any format. For example, you can use `$(VersionSuffix)` defined in a PowerShell task:</p>
 <p>`$versionSuffix = ".$([DateTimeOffset]::UtcNow.ToString('yyyyMMdd.HHmmss'))"`</p>
 <p>`Write-Host "##vso[task.setvariable variable=VersionSuffix;]$versionSuffix"`</p>
 </ul>
@@ -116,7 +113,7 @@ None
 </td>
 </tr>
 
-[!INCLUDE [control-options-arguments](../_shared/control-options-arguments.md)]
+[!INCLUDE [control-options-arguments](../includes/control-options-arguments.md)]
 </table>
 
 Also see: [Service Fabric Application Deployment task](../deploy/service-fabric-deploy.md)
@@ -139,7 +136,7 @@ This task support two types of update:
 
 <table><thead><tr><th>Parameters</th><th>Description</th></tr></thead>
 <tr><td><code>updateType</code><br/>Update Type</td><td>(Required) Specify the type of update that should be made to the manifest files. In order to use both update types, add an instance of this task to the build pipeline for each type of update to be executed<br/>Default value: Manifest versions</td></tr>
-<tr><td><code>applicationPackagePath</code><br/>Application Package</td><td>(Required) Path to the application package. [Variables](https://go.microsoft.com/fwlink/?LinkID=550988) and wildcards can be used in the path</td></tr>
+<tr><td><code>applicationPackagePath</code><br/>Application Package</td><td>(Required) Path to the application package. [Variables](../../build/variables.md) and wildcards can be used in the path</td></tr>
 <tr><td><code>versionSuffix</code><br/>Version Value</td><td>(Required) The value used to specify the version in the manifest files. Default is .$(Build.BuildNumber)<br/>Default value: .$(Build.BuildNumber)</td></tr>
 <tr><td><code>versionBehavior</code><br/>Version Behavior</td><td>Specify whether to append the version value to existing values in the manifest files or replace them<br/>Default value: Append</td></tr>
 <tr><td><code>updateOnlyChanged</code><br/>Update only if changed</td><td>(Required) Incrementally update only the packages that have changed. Use the [deterministic compiler flag](https://go.microsoft.com/fwlink/?LinkId=808668) to ensure builds with the same inputs produce the same outputs<br/>Default value: false</td></tr>
@@ -149,7 +146,7 @@ This task support two types of update:
 <tr><td><code>buildNumber</code><br/>Build Number</td><td>The build number for comparison</td></tr>
 <tr><td><code>overwriteExistingPkgArtifact</code><br/>Overwrite Existing Package Artifact</td><td>Always download a new copy of the artifact. Otherwise use an existing copy, if present<br/>Default value: true</td></tr>
 <tr><td><code>imageNamesPath</code><br/>Image Names Path</td><td>Path to a text file that contains the names of the Docker images associated with the Service Fabric application that should be updated with digests. Each image name must be on its own line and must be in the same order as the digests in Image Digests file. If the images are created by the Service Fabric project, this file is generated as part of the Package target and its output location is controlled by the property BuiltDockerImagesFilePath</td></tr>
-<tr><td><code>imageDigestsPath</code><br/>Image Digests Path</td><td>(Required) Path to a text file that contains the digest values of the Docker images associated with the Service Fabric application. This file can be output by the [Docker task](https://go.microsoft.com/fwlink/?linkid=848006) when using the push action. The file should contain lines of text in the format of 'registry/image_name@digest_value'</td></tr>
+<tr><td><code>imageDigestsPath</code><br/>Image Digests Path</td><td>(Required) Path to a text file that contains the digest values of the Docker images associated with the Service Fabric application. This file can be output by the [Docker task](../../index.yml) when using the push action. The file should contain lines of text in the format of 'registry/image_name@digest_value'</td></tr>
 </table>
 ::: moniker-end
 
@@ -161,13 +158,13 @@ Also see: [Service Fabric Application Deployment task](../deploy/service-fabric-
 
 This task is open source [on GitHub](https://github.com/Microsoft/azure-pipelines-tasks). Feedback and contributions are welcome.
 
-## Q & A
+## FAQ
 <!-- BEGINSECTION class="md-qanda" -->
 
-[!INCLUDE [qa-agents](../../_shared/qa-agents.md)]
+[!INCLUDE [qa-agents](../../includes/qa-agents.md)]
 
 ::: moniker range="< azure-devops"
-[!INCLUDE [qa-versions](../../_shared/qa-versions.md)]
+[!INCLUDE [qa-versions](../../includes/qa-versions.md)]
 ::: moniker-end
 
 <!-- ENDSECTION -->
